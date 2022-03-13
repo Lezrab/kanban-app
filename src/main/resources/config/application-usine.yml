@@ -1,0 +1,29 @@
+spring:
+  application:
+    name: kanban-app
+  info:
+    application:
+      name: kanban-app
+      version: G01R00C00
+
+server:
+  port: 18999
+
+management:
+  server:
+    port: 16999
+  health:
+    probes:
+      enabled: true
+  endpoints:
+    web:
+      exposure:
+        include:
+          - refresh
+          - restart
+          - info
+          - metrics
+          - health
+          - shutdown
+          - prometheus
+          - chaosmonkey

@@ -1,0 +1,69 @@
+swagger: "2.0"
+info:
+  title: KANBAN APP
+  description: API of the KANBAN APP
+  version: 1.0.0
+host: www
+schemes:
+  - https
+paths:
+  "/kanban/boards/{external_id}":
+    get:
+      tags:
+        - API for one KanbanBoard
+      summary: Retrieves a KanbanBoard by external id
+      description: 'API GET for one board'
+      operationId: getOneKanbanBoardByExternalId
+      consumes:
+        - application/json
+      produces:
+        - application/json
+      parameters:
+        - name: external_id
+          in: path
+          type: string
+          description: externalId of the KanbanBoard
+          required: true
+      responses:
+        '200':
+          description: 'Succeed to get the KanbanBoard'
+          schema:
+            $ref: '#/definitions/KanbanBoard'
+        '400':
+          description: 'The following missing parameter is mandatory : externalId'
+          schema:
+            $ref: '#/definitions/RequestError'
+        '404':
+          description: 'Board {externalId} not found'
+          schema:
+            $ref: '#/definitions/RequestError'
+        '500':
+          description: 'Internal error'
+          schema:
+            $ref: '#/definitions/RequestError'
+
+definitions:
+  RequestError:
+    type: object
+    required:
+      - code
+      - message
+      - description
+    properties:
+      code:
+        type: integer
+        description: Error code
+      message:
+        type: string
+        description: Error message
+      description:
+        type: string
+        description: Error description
+
+  KanbanBoard:
+    type: object
+    properties:
+      externalId:
+        type: string
+        example: 'my_kanban_board'
+        description: External Id of the KanbanBoard
