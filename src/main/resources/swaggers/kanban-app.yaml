@@ -7,22 +7,24 @@ host: www
 schemes:
   - https
 paths:
-  "/kanban/boards/{external_id}":
+
+
+  ### API for one KanbanBoard ###
+  "/kanban/api/boards/{boardId}":
     get:
       tags:
         - API for one KanbanBoard
-      summary: Retrieves a KanbanBoard by external id
+      summary: Retrieves a KanbanBoard by id
       description: 'API GET for one board'
-      operationId: getOneKanbanBoardByExternalId
-      consumes:
-        - application/json
+      operationId: getOneKanbanBoardById
       produces:
         - application/json
       parameters:
-        - name: external_id
+        - name: boardId
           in: path
-          type: string
-          description: externalId of the KanbanBoard
+          type: integer
+          format: int64
+          description: id of the KanbanBoard
           required: true
       responses:
         '200':
@@ -30,17 +32,645 @@ paths:
           schema:
             $ref: '#/definitions/KanbanBoard'
         '400':
-          description: 'The following missing parameter is mandatory : externalId'
+          description: 'The following missing parameter is mandatory : id'
           schema:
             $ref: '#/definitions/RequestError'
         '404':
-          description: 'Board {externalId} not found'
+          description: 'Board {id} not found'
           schema:
             $ref: '#/definitions/RequestError'
         '500':
           description: 'Internal error'
           schema:
             $ref: '#/definitions/RequestError'
+    post:
+      tags:
+        - API for one KanbanBoard
+      summary: Create a KanbanBoard (with body in request)
+      description: 'API POST for one board'
+      operationId: createOneKanbanBoardById
+      consumes:
+        - application/json
+      produces:
+        - application/json
+      parameters:
+        - name: boardId
+          in: path
+          description: id of the board
+          required: true
+          type: integer
+          format: int64
+        - name: body
+          in: body
+          description: KanbanBoard json
+          required: true
+          schema:
+            $ref: '#/definitions/KanbanBoard'
+      responses:
+        '201':
+          description: Succeed to create board
+          schema:
+            $ref: '#/definitions/KanbanBoard'
+        '400':
+          description: 'The following missing parameter(s) is mandatory : id, body'
+          schema:
+            $ref: '#/definitions/RequestError'
+        '404':
+          description: KanbanBoard {id} not found
+          schema:
+            $ref: '#/definitions/RequestError'
+        '500':
+          description: Internal error
+          schema:
+            $ref: '#/definitions/RequestError'
+    put:
+      tags:
+        - API for one KanbanBoard
+      summary: Update a KanbanBoard (with body in request)
+      description: 'API PUT for one board'
+      operationId: putOneKanbanBoardById
+      consumes:
+        - application/json
+      produces:
+        - application/json
+      parameters:
+        - name: boardId
+          in: path
+          description: id of the board
+          required: true
+          type: integer
+          format: int64
+        - name: body
+          in: body
+          description: KanbanBoard json
+          required: true
+          schema:
+            $ref: '#/definitions/KanbanBoard'
+      responses:
+        '201':
+          description: Succeed to update board
+          schema:
+            $ref: '#/definitions/KanbanBoard'
+        '400':
+          description: 'The following missing parameter(s) is mandatory : id, body'
+          schema:
+            $ref: '#/definitions/RequestError'
+        '404':
+          description: KanbanBoard {id} not found
+          schema:
+            $ref: '#/definitions/RequestError'
+        '500':
+          description: Internal error
+          schema:
+            $ref: '#/definitions/RequestError'
+    delete:
+      tags:
+        - API for one KanbanBoard
+      summary: Delete a KanbanBoard by id
+      description: 'API DELETE for one board'
+      operationId: deleteOneKanbanBoardById
+      consumes:
+        - application/json
+      produces:
+        - application/json
+      parameters:
+        - name: boardId
+          in: path
+          description: Id of the board
+          required: true
+          type: integer
+          format: int64
+      responses:
+        '204':
+          description: Succeed to delete the board
+        '400':
+          description: 'The following missing parameter is mandatory : id'
+          schema:
+            $ref: '#/definitions/RequestError'
+        '404':
+          description: KanbanBoard {id} not found
+          schema:
+            $ref: '#/definitions/RequestError'
+        '500':
+          description: Internal error
+          schema:
+            $ref: '#/definitions/RequestError'
+
+
+
+  ### API for many KanbanBoard ###
+  "/kanban/api/boards/":
+    get:
+      tags:
+        - API for many/all KanbanBoards
+      summary: Get all KanbanBoard
+      description: 'API GET for all boards'
+      operationId: getManyKanbanBoards
+      produces:
+        - application/json
+      responses:
+        '200':
+          description: Succeed to get all boards
+          schema:
+            type: 'array'
+            items:
+              $ref: '#/definitions/KanbanBoard'
+        '400':
+          description: Invalid parameters
+          schema:
+            $ref: '#/definitions/KanbanBoard'
+        '404':
+          description: Board {external_id} not found
+          schema:
+            $ref: '#/definitions/KanbanBoard'
+        '500':
+          description: Internal error
+          schema:
+            $ref: '#/definitions/KanbanBoard'
+    delete:
+      tags:
+        - API for many/all KanbanBoards
+      summary: Delete all KanbanBoards
+      description: 'API DELETE for all boards'
+      operationId: deleteAllKanbanBoards
+      produces:
+        - application/json
+      responses:
+        '204':
+          description: Succeed to delete the boards
+        '404':
+          description: KanbanBoard {external_id} not found
+          schema:
+            $ref: '#/definitions/RequestError'
+        '500':
+          description: Internal error
+          schema:
+            $ref: '#/definitions/RequestError'
+
+
+  ### API for one KanbanSection ###
+  "/kanban/api/boards/{boardId}/sections/{sectionId}":
+    get:
+      tags:
+        - API for one KanbanSection
+      summary: Get one KanbanSection in a KanbanBoard
+      description: API GET for one KanbanSection
+      operationId: getKanbanSectionByKanbanBoard
+      produces:
+        - application/json
+      parameters:
+        - name: boardId
+          in: path
+          type: integer
+          format: int64
+          description: id of the KanbanBoard
+          required: true
+        - name: sectionId
+          in: path
+          description: id of the section
+          required: true
+          type: integer
+          format: int64
+      responses:
+        '200':
+          description: Succeed to get the section
+          schema:
+            $ref: '#/definitions/KanbanSection'
+        '404':
+          description: KanbanSection {section} not found
+          schema:
+            $ref: '#/definitions/RequestError'
+        '500':
+          description: Internal error
+          schema:
+            $ref: '#/definitions/RequestError'
+    post:
+      tags:
+        - API for one KanbanSection
+      summary: Create one KanbanSection in a KanbanBoard
+      description: API POST for one KanbanSection
+      operationId: createOneKanbanSectionInKanbanBoard
+      consumes:
+        - application/json
+      produces:
+        - application/json
+      parameters:
+        - name: boardId
+          in: path
+          description: id of the board
+          required: true
+          type: integer
+          format: int64
+        - name: sectionId
+          in: path
+          description: id of the section
+          required: true
+          type: integer
+          format: int64
+        - name: body
+          in: body
+          description: KanbanBoard json
+          required: true
+          schema:
+            $ref: '#/definitions/KanbanSection'
+      responses:
+        '201':
+          description: Succeed to create the section
+          schema:
+            $ref: '#/definitions/KanbanSection'
+        '404':
+          description: KanbanBoard {board} not found
+          schema:
+            $ref: '#/definitions/RequestError'
+        '500':
+          description: Internal error
+          schema:
+            $ref: '#/definitions/RequestError'
+    delete:
+      tags:
+        - API for one KanbanSection
+      summary: Delete one KanbanSection in a KanbanBoard
+      description: API DELETE for one KanbanSection
+      operationId: deleteOneKanbanSectionInKanbanBoard
+      consumes:
+        - application/json
+      produces:
+        - application/json
+      parameters:
+        - name: boardId
+          in: path
+          description: id of the board
+          required: true
+          type: integer
+          format: int64
+        - name: sectionId
+          in: path
+          description: id of the section
+          required: true
+          type: integer
+          format: int64
+      responses:
+        '204':
+          description: Succeed to delete the section
+        '404':
+          description: KanbanBoard {board} not found
+          schema:
+            $ref: '#/definitions/RequestError'
+        '500':
+          description: Internal error
+          schema:
+            $ref: '#/definitions/RequestError'
+    put:
+      tags:
+        - API for one KanbanSection
+      summary: Update one KanbanSection in a KanbanBoard
+      description: API PUT for one KanbanSection
+      operationId: updateOneKanbanSectionInKanbanBoard
+      consumes:
+        - application/json
+      produces:
+        - application/json
+      parameters:
+        - name: boardId
+          in: path
+          description: id of the board
+          required: true
+          type: integer
+          format: int64
+        - name: sectionId
+          in: path
+          description: id of the section
+          required: true
+          type: integer
+          format: int64
+        - name: body
+          in: body
+          description: KanbanBoard json
+          required: true
+          schema:
+            $ref: '#/definitions/KanbanSection'
+      responses:
+        '201':
+          description: Succeed to update the section
+          schema:
+            $ref: '#/definitions/KanbanSection'
+        '404':
+          description: KanbanBoard {board} not found
+          schema:
+            $ref: '#/definitions/RequestError'
+        '500':
+          description: Internal error
+          schema:
+            $ref: '#/definitions/RequestError'
+
+  ### API for many KanbanSection ###
+  "/kanban/api/boards/{boardId}/sections":
+    get:
+      tags:
+        - API for many/all KanbanSection
+      summary: Get all KanbanSection of a KanbanBoard
+      description: 'API GET for all KanbanSection of a KanbanBoard'
+      operationId: getKanbanSectionsByKanbanBoard
+      produces:
+        - application/json
+      parameters:
+        - name: boardId
+          in: path
+          description: id of the board
+          required: true
+          type: integer
+          format: int64
+      responses:
+        '200':
+          description: Succeed to get the sections
+          schema:
+            type: 'array'
+            items:
+              $ref: '#/definitions/KanbanSection'
+        '404':
+          description: KanbanBoard {board} not found
+          schema:
+            $ref: '#/definitions/RequestError'
+        '500':
+          description: Internal error
+          schema:
+            $ref: '#/definitions/RequestError'
+    delete:
+      tags:
+        - API for many/all KanbanSection
+      summary: Delete all KanbanSection of a KanbanBoar
+      description: API DELETE for all KanbanSection of a KanbanBoard
+      operationId: deleteKanbanSectionsByKanbanBoard
+      produces:
+        - application/json
+      parameters:
+        - name: boardId
+          in: path
+          description: id of the board
+          required: true
+          type: integer
+          format: int64
+      responses:
+        '204':
+          description: Succeed to delete the sections
+        '404':
+          description: KanbanBoard {board} not found
+          schema:
+            $ref: '#/definitions/RequestError'
+        '500':
+          description: Internal error
+          schema:
+            $ref: '#/definitions/RequestError'
+
+  ### API for one KanbanCard ###
+  "/kanban/api/boards/{boardId}/sections/{sectionId}/cards/{cardId}":
+    get:
+      tags:
+        - API for one KanbanCard
+      summary: Get one KanbanCard of a KanbanSection
+      description: 'API GET for one KanbanCard of a KanbanSection'
+      operationId: getOneKanbanCardByKanbanSection
+      produces:
+        - application/json
+      parameters:
+        - name: boardId
+          in: path
+          description: id of the board
+          required: true
+          type: integer
+          format: int64
+        - name: sectionId
+          in: path
+          description: id of the section
+          required: true
+          type: integer
+          format: int64
+        - name: cardId
+          in: path
+          description: id of the card
+          required: true
+          type: integer
+          format: int64
+      responses:
+        '200':
+          description: Succeed to get the card
+          schema:
+            $ref: '#/definitions/KanbanCard'
+        '404':
+          description: KanbanSection {section} not found
+          schema:
+            $ref: '#/definitions/RequestError'
+        '500':
+          description: Internal error
+          schema:
+            $ref: '#/definitions/RequestError'
+    post:
+      tags:
+        - API for one KanbanCard
+      summary: Get one KanbanCard of a KanbanSection
+      description: 'API POST for one KanbanCard of a KanbanSection'
+      operationId: createOneKanbanCardByKanbanSection
+      consumes:
+        - application/json
+      produces:
+        - application/json
+      parameters:
+        - name: boardId
+          in: path
+          description: id of the board
+          required: true
+          type: integer
+          format: int64
+        - name: sectionId
+          in: path
+          description: id of the section
+          required: true
+          type: integer
+          format: int64
+        - name: cardId
+          in: path
+          description: id of the card
+          required: true
+          type: integer
+          format: int64
+        - name: body
+          in: body
+          description: KanbanBoard json
+          required: true
+          schema:
+            $ref: '#/definitions/KanbanCard'
+      responses:
+        '201':
+          description: Succeed to create the card
+          schema:
+            $ref: '#/definitions/KanbanCard'
+        '404':
+          description: KanbanSection {section} not found
+          schema:
+            $ref: '#/definitions/RequestError'
+        '500':
+          description: Internal error
+          schema:
+            $ref: '#/definitions/RequestError'
+    put:
+      tags:
+        - API for one KanbanCard
+      summary: Update one KanbanCard of a KanbanSection
+      description: 'API PUT for one KanbanCard of a KanbanSection'
+      operationId: updateOneKanbanCardByKanbanSection
+      consumes:
+        - application/json
+      produces:
+        - application/json
+      parameters:
+        - name: boardId
+          in: path
+          description: id of the board
+          required: true
+          type: integer
+          format: int64
+        - name: sectionId
+          in: path
+          description: id of the section
+          required: true
+          type: integer
+          format: int64
+        - name: cardId
+          in: path
+          description: id of the card
+          required: true
+          type: integer
+          format: int64
+        - name: body
+          in: body
+          description: KanbanBoard json
+          required: true
+          schema:
+            $ref: '#/definitions/KanbanCard'
+      responses:
+        '201':
+          description: Succeed to update the card
+          schema:
+            $ref: '#/definitions/KanbanCard'
+        '404':
+          description: KanbanSection {section} not found
+          schema:
+            $ref: '#/definitions/RequestError'
+        '500':
+          description: Internal error
+          schema:
+            $ref: '#/definitions/RequestError'
+    delete:
+      tags:
+        - API for one KanbanCard
+      summary: Delete one KanbanCard of a KanbanSection
+      description: API DELETE for one KanbanCard of a KanbanSection
+      operationId: deleteOneKanbanCardByKanbanSection
+      produces:
+        - application/json
+      parameters:
+        - name: boardId
+          in: path
+          description: id of the board
+          required: true
+          type: integer
+          format: int64
+        - name: sectionId
+          in: path
+          description: id of the section
+          required: true
+          type: integer
+          format: int64
+        - name: cardId
+          in: path
+          description: id of the card
+          required: true
+          type: integer
+          format: int64
+      responses:
+        '204':
+          description: Succeed to delete the card
+        '404':
+          description: KanbanBoard {board} not found
+          schema:
+            $ref: '#/definitions/RequestError'
+        '500':
+          description: Internal error
+          schema:
+            $ref: '#/definitions/RequestError'
+
+
+  ### API for many KanbanCard ###
+  "/kanban/api/boards/{boardId}/sections/{sectionId}/cards":
+    get:
+      tags:
+        - API for many/all KanbanCards
+      summary: Get all KanbanCard of a KanbanSection
+      description: 'API GET for all KanbanCard of a KanbanSection'
+      operationId: getKanbanCardsByKanbanSection
+      produces:
+        - application/json
+      parameters:
+        - name: boardId
+          in: path
+          description: id of the board
+          required: true
+          type: integer
+          format: int64
+        - name: sectionId
+          in: path
+          description: id of the section
+          required: true
+          type: integer
+          format: int64
+      responses:
+        '200':
+          description: Succeed to get the cards
+          schema:
+            type: 'array'
+            items:
+              $ref: '#/definitions/KanbanCard'
+        '404':
+          description: KanbanSection {section} not found
+          schema:
+            $ref: '#/definitions/RequestError'
+        '500':
+          description: Internal error
+          schema:
+            $ref: '#/definitions/RequestError'
+    delete:
+      tags:
+        - API for many/all KanbanCards
+      summary: Delete all KanbanCard of a KanbanSection
+      description: API DELETE for all KanbanCard of a KanbanSection
+      operationId: deleteKanbanCardsByKanbanSection
+      produces:
+        - application/json
+      parameters:
+        - name: boardId
+          in: path
+          description: id of the board
+          required: true
+          type: integer
+          format: int64
+        - name: sectionId
+          in: path
+          description: id of the section
+          required: true
+          type: integer
+          format: int64
+      responses:
+        '204':
+          description: Succeed to delete the sections
+        '404':
+          description: KanbanBoard {board} not found
+          schema:
+            $ref: '#/definitions/RequestError'
+        '500':
+          description: Internal error
+          schema:
+            $ref: '#/definitions/RequestError'
+
 
 definitions:
   RequestError:
@@ -59,11 +689,60 @@ definitions:
       description:
         type: string
         description: Error description
-
   KanbanBoard:
     type: object
     properties:
-      externalId:
+      label:
         type: string
-        example: 'my_kanban_board'
-        description: External Id of the KanbanBoard
+        example: 'My Kanban Board'
+        description: Label of the KanbanBoard
+  KanbanSection:
+    type: object
+    properties:
+      label:
+        type: string
+        example: "IN PROGRESS"
+        description: Label of the section
+      hexColor:
+        type: string
+        example: "#64F4AE"
+        description: Hex color of the section
+      position:
+        type: integer
+        format: int64
+        description: Position of section
+        example: 1
+  KanbanCard:
+    type: object
+    properties:
+      label:
+        type: string
+        example: "Resolve this issue #git"
+        description: Label of the KanbanCard
+      description:
+        type: string
+        example: "This text describes what the card is about"
+        description: "This text describes what the card is about"
+      creationDate:
+        type: string
+        format: date
+        description: "Creation date of the board"
+        example: "2021-01-30"
+      estimatedTime:
+        type: integer
+        example: 60
+        description: "Estimated time in minutes"
+      associatedUrl:
+        type: string
+        example: "https://www.google.com"
+        description: "Linked URL"
+      affectedUser:
+        type: string
+        example: "john_doe"
+        description: "Affected user"
+      associatedTags:
+        type: array
+        items:
+          type: string
+          example: "DEFECT"
+        description: "Associated tags"

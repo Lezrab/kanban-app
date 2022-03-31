@@ -1,20 +1,15 @@
 package fr.istic.sir.kanban.aarzel.kanbanapp.exception;
 
-import lombok.Getter;
-import lombok.Setter;
-import org.springframework.http.HttpStatus;
+import lombok.AllArgsConstructor;
+import lombok.Data;
 
-@Getter
-@Setter
-public class ErrorResponse extends GenericErrorResponse {
-
+/**
+ * Custom error that can be returned by the API.
+ */
+@Data
+@AllArgsConstructor
+public class ErrorResponse {
+    private String timestamp;
+    private String title;
     private String message;
-
-    private String error;
-
-    public ErrorResponse(String timestamp, String methodInvoked, String urlInvoked, HttpStatus httpStatus, String message, String error) {
-        super(timestamp, methodInvoked, urlInvoked, httpStatus);
-        this.message = message;
-        this.error = error;
-    }
 }

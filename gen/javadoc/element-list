@@ -1,0 +1,12 @@
+fr.istic.sir.kanban.aarzel.kanbanapp
+fr.istic.sir.kanban.aarzel.kanbanapp.configuration
+fr.istic.sir.kanban.aarzel.kanbanapp.converter
+fr.istic.sir.kanban.aarzel.kanbanapp.entity
+fr.istic.sir.kanban.aarzel.kanbanapp.exception
+fr.istic.sir.kanban.aarzel.kanbanapp.handler
+fr.istic.sir.kanban.aarzel.kanbanapp.impl
+fr.istic.sir.kanban.aarzel.kanbanapp.repository
+fr.istic.sir.kanban.aarzel.kanbanapp.services
+fr.istic.sir.kanban.aarzel.kanbanapp.services.boards
+fr.istic.sir.kanban.aarzel.kanbanapp.services.cards
+fr.istic.sir.kanban.aarzel.kanbanapp.services.sections

@@ -1,0 +1,537 @@
+{
+	"info": {
+		"_postman_id": "f6c95284-9b25-4f9a-a407-81a6f2b5b47e",
+		"name": "Kanban App",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "Boards",
+			"item": [
+				{
+					"name": "one",
+					"item": [
+						{
+							"name": "POST OneKanbanBoard",
+							"request": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n  \"label\": \"My Kanban Board\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "http://localhost:20370/kanban/api/boards/1",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "20370",
+									"path": [
+										"kanban",
+										"api",
+										"boards",
+										"1"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "GET OneKanbanBoard",
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "http://localhost:20370/kanban/api/boards/2",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "20370",
+									"path": [
+										"kanban",
+										"api",
+										"boards",
+										"2"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "DELETE OneKanbanBoard",
+							"request": {
+								"method": "DELETE",
+								"header": [],
+								"url": {
+									"raw": "http://localhost:20370/kanban/api/boards/1",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "20370",
+									"path": [
+										"kanban",
+										"api",
+										"boards",
+										"1"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "PUT OneKanbanBoard",
+							"request": {
+								"method": "PUT",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"label\": \"My Kanban Board no\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "http://localhost:20370/kanban/api/boards/1",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "20370",
+									"path": [
+										"kanban",
+										"api",
+										"boards",
+										"1"
+									]
+								}
+							},
+							"response": []
+						}
+					]
+				},
+				{
+					"name": "many",
+					"item": [
+						{
+							"name": "GET ManyKanbanBoards",
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "http://localhost:20370/kanban/api/boards/",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "20370",
+									"path": [
+										"kanban",
+										"api",
+										"boards",
+										""
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "DELETE ManyKanbanBoards",
+							"request": {
+								"method": "DELETE",
+								"header": [],
+								"url": {
+									"raw": "http://localhost:20370/kanban/api/boards/",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "20370",
+									"path": [
+										"kanban",
+										"api",
+										"boards",
+										""
+									]
+								}
+							},
+							"response": []
+						}
+					]
+				}
+			]
+		},
+		{
+			"name": "Sections",
+			"item": [
+				{
+					"name": "one",
+					"item": [
+						{
+							"name": "POST OneKanbanSectionByBoard",
+							"request": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"label\": \"Test section 6\",\r\n    \"hexColor\": \"#000000\",\r\n    \"position\": 4\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "http://localhost:20370/kanban/api/boards/1/sections/1",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "20370",
+									"path": [
+										"kanban",
+										"api",
+										"boards",
+										"1",
+										"sections",
+										"1"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "GET OneKanbanSectionByBoard",
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "http://localhost:20370/kanban/api/boards/1/sections/1",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "20370",
+									"path": [
+										"kanban",
+										"api",
+										"boards",
+										"1",
+										"sections",
+										"1"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "DELETE OneKanbanSectionByKanbanBoard",
+							"request": {
+								"method": "DELETE",
+								"header": [],
+								"url": {
+									"raw": "http://localhost:20370/kanban/api/boards/1/sections/1",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "20370",
+									"path": [
+										"kanban",
+										"api",
+										"boards",
+										"1",
+										"sections",
+										"1"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "PUT OneKanbanSectionByBoard",
+							"request": {
+								"method": "PUT",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"label\": \"Test section 6\",\r\n    \"hexColor\": \"#000000\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "http://localhost:20370/kanban/api/boards/5/sections/5",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "20370",
+									"path": [
+										"kanban",
+										"api",
+										"boards",
+										"5",
+										"sections",
+										"5"
+									]
+								}
+							},
+							"response": []
+						}
+					]
+				},
+				{
+					"name": "many",
+					"item": [
+						{
+							"name": "GET ManyKanbanSectionsByBoard",
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "http://localhost:20370/kanban/api/board/1/sections",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "20370",
+									"path": [
+										"kanban",
+										"api",
+										"board",
+										"1",
+										"sections"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "DELETE ManyKanbanSectionsByBoard",
+							"request": {
+								"method": "DELETE",
+								"header": [],
+								"url": {
+									"raw": "http://localhost:20370//kanban/api/boards/1/sections",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "20370",
+									"path": [
+										"",
+										"kanban",
+										"api",
+										"boards",
+										"1",
+										"sections"
+									]
+								}
+							},
+							"response": []
+						}
+					]
+				}
+			]
+		},
+		{
+			"name": "Cards",
+			"item": [
+				{
+					"name": "one",
+					"item": [
+						{
+							"name": "POST OneKabanCardInSection",
+							"request": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n  \"label\": \"Resolve this issue #git\",\r\n  \"description\": \"This text describes what the card is about\",\r\n  \"creationDate\": \"2021-01-30\",\r\n  \"estimatedTime\": 60,\r\n  \"associatedUrl\": \"https://www.google.com\",\r\n  \"affectedUser\": \"john_doe\",\r\n  \"associatedTags\": [\r\n    \"DEFECT\", \"TODO\", \"ALERT\"\r\n  ]\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "http://localhost:20370/kanban/api/boards/1/sections/1/cards/1",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "20370",
+									"path": [
+										"kanban",
+										"api",
+										"boards",
+										"1",
+										"sections",
+										"1",
+										"cards",
+										"1"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "GET OneKanbanCardBySectionAndBoard",
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "http://localhost:20370/kanban/api/boards/1/sections/1/cards/1",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "20370",
+									"path": [
+										"kanban",
+										"api",
+										"boards",
+										"1",
+										"sections",
+										"1",
+										"cards",
+										"1"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "DELETE OneKabanCardInSection",
+							"request": {
+								"method": "DELETE",
+								"header": [],
+								"url": {
+									"raw": "http://localhost:20370/kanban/api/boards/2/sections/4/cards/1",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "20370",
+									"path": [
+										"kanban",
+										"api",
+										"boards",
+										"2",
+										"sections",
+										"4",
+										"cards",
+										"1"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "UPDATE OneKabanCardInSection",
+							"request": {
+								"method": "PUT",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n  \"label\": \"Resolve this issue #git\",\r\n  \"description\": \"This text describes what the card is about\",\r\n  \"creationDate\": \"2021-01-30\",\r\n  \"estimatedTime\": 60,\r\n  \"associatedUrl\": \"https://www.google.com\",\r\n  \"affectedUser\": \"john_doe\",\r\n  \"associatedTags\": [\r\n    \"DEFECT\", \"TODO\", \"ALERT\"\r\n  ]\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "http://localhost:20370/kanban/api/boards/2/sections/4/cards/1",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "20370",
+									"path": [
+										"kanban",
+										"api",
+										"boards",
+										"2",
+										"sections",
+										"4",
+										"cards",
+										"1"
+									]
+								}
+							},
+							"response": []
+						}
+					]
+				},
+				{
+					"name": "many",
+					"item": [
+						{
+							"name": "GET ManyKanbanCardsInSectionByBoard",
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "http://localhost:20370/kanban/api/boards/1/sections/1/cards",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "20370",
+									"path": [
+										"kanban",
+										"api",
+										"boards",
+										"1",
+										"sections",
+										"1",
+										"cards"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "DELETE ManyKanbanCardsInSectionByBoard",
+							"request": {
+								"method": "DELETE",
+								"header": [],
+								"url": {
+									"raw": "http://localhost:20370/kanban/api/boards/2/section/4/cards",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "20370",
+									"path": [
+										"kanban",
+										"api",
+										"boards",
+										"2",
+										"section",
+										"4",
+										"cards"
+									]
+								}
+							},
+							"response": []
+						}
+					]
+				}
+			]
+		}
+	]
+}
