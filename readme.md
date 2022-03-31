@@ -6,7 +6,7 @@ J'ai décidé de réaliser ce projet via Spring Boot pour développer l'API REST per
 ## Description des routes
 ### KanbanBoard 
 Les routes pour accéder aux KanbanBoard sont les suivantes :
-- **(GET)** /kanban/api/boards : Permet d'accéder à tous les KanbanBoard
+- (GET) - **/kanban/api/boards** : Permet d'accéder à tous les KanbanBoard
 - **(DELETE)** /kanban/api/boards : Permet de supprimer tous les KanbanBoard
 - **(GET)** /kanban/api/boards/{id} : Permet d'accéder à un KanbanBoard en particulier
 - **(POST)** /kanban/api/boards/{id} : Permet de créer un KanbanBoard
