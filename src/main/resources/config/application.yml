@@ -11,10 +11,9 @@ spring:
     hikari:
       maximum-pool-size: 1
   jpa:
-    generate-ddl: true
-    database-platform: org.hibernate.dialect.MySQL8Dialect
     hibernate:
       ddl-auto: none
+      dialect: org.hibernate.dialect.MySQL8Dialect
   mvc:
     throw-exception-if-no-handler-found: true
     async:
