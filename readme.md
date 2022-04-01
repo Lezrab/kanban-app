@@ -47,6 +47,12 @@ Pour cela, j'ai créé des exceptions personnalisées : DatabaseFetchException, 
 Ces exceptions sont soulevées lors des cas indiqués précédemment.
 
 Pour permettre la gestion de ces exceptions, une classe annotée avec @ControllerAdvice existe et permet de gérer les différents cas d'erreurs retournées selon l'exception catchée.
+
+## TU & Javadoc
+Des tests unitaires ont été réalisés pour vérifier le bon fonctionnement de l'application : la couverture de code est assurée à 85% (368 lignes sur 432), certaines classes n'ont pas été testées, s'agissant exclusivement de POJO. Il aurait été inutile de faire des tests pour vérifier seulement le bon fonctionnement de getters/setters.
+
+La javadoc est générée à la racine du projet, dans le dossier `/gen/javadoc`.
+
 ## Utilisation des entités/DTOs
 
 Pour permettre à l'utilisateur d'avoir une interface plus "user-friendly", les entités en base de données sont converties en DTO. La classe ModelMapper se charge de faire la conversion. 
@@ -62,12 +68,12 @@ Les DTOs sont générés automatiquement grâce au Swagger à la compilation, vi
 - Cloner le [projet GIT](https://gitlab.istic.univ-rennes1.fr/aarzel/kanban-app) sur son poste personnel.
 - S'assurer d'avoir de quoi utiliser Maven (installation sur son poste personnel, ou bien utilisation du Maven Wrapper d'Intellij par exemple). Importer le projet en tant que projet Maven.
 - Le projet est développé en [Java 11.0.13](https://www.oracle.com/fr/java/technologies/javase/jdk11-archive-downloads.html)
-- Créer la base de données "kanban_app" sur l'interface phpMyAdmin. Le script de création de la base de données se trouve dans le dossier **/src/main/ressources/database**. Sinon, dans le fichier de configuration de l'application **/src/main/ressources/config/application.yml**, passer la valeur de **spring.jpa.hibernate.ddl-auto** à **"create"**. Cette opération créera la base de données à chaque lancement de l'application, alors s'assurer de remettre sa valeur à **"none"** après la première création.
+- Créer la base de données "kanban_app" sur l'interface phpMyAdmin. Le script de création de la base de données se trouve dans le dossier `/src/main/ressources/database`. Sinon, dans le fichier de configuration de l'application `/src/main/ressources/config/application.yml`, passer la valeur de **spring.jpa.hibernate.ddl-auto** à **"create"**. Cette opération créera la base de données à chaque lancement de l'application, alors s'assurer de remettre sa valeur à **"none"** après la première création.
 - Compiler l'application : `mvn clean install` afin de générer les DTOs nécessaires au fonctionnement de l'application.
 - Démarrer l'application :)
 
 ## Ressources
-Dans le dossier /src/main/ressources se trouvent un ensemble de ressources utiles pour pouvoir comprendre et tester le projet :
+Dans le dossier `/src/main/ressources` se trouvent un ensemble de ressources utiles pour pouvoir comprendre et tester le projet :
 - assets : l'ensemble des images utilisées dans ce readme
 - config : le fichier de configuration de l'application. Ici, vous pouvez redéfinir l'adresse de la base de données ainsi que l'utilisateur et le mot de passe de connexion.
 - database : le script de création de la base de données "kanban_app". Il pourra être utile de l'utiliser si la création de la base de données à la main est requise.
