@@ -16,15 +16,28 @@ J'ai décidé de réaliser ce projet via Spring Boot pour développer l'API REST per
 Les routes pour accéder aux KanbanBoard sont les suivantes :
 - **(GET)** - /kanban/api/boards : Permet d'accéder à tous les KanbanBoard
 - **(DELETE)** /kanban/api/boards : Permet de supprimer tous les KanbanBoard
-- **(GET)** /kanban/api/boards/{id} : Permet d'accéder à un KanbanBoard en particulier
-- **(POST)** /kanban/api/boards/{id} : Permet de créer un KanbanBoard
-- **(PUT)** /kanban/api/boards/{id} : Permet de mettre à jour un KanbanBoard
-- **(DELETE)** /kanban/api/boards/{id} : Permet de supprimer un KanbanBoard en particulier
+- **(GET)** /kanban/api/boards/{boardId} : Permet d'accéder à un KanbanBoard en particulier
+- **(POST)** /kanban/api/boards/{boardId} : Permet de créer un KanbanBoard
+- **(PUT)** /kanban/api/boards/{boardId} : Permet de mettre à jour un KanbanBoard
+- **(DELETE)** /kanban/api/boards/{boardId} : Permet de supprimer un KanbanBoard en particulier
 
 ### KanbanSection
 Les routes pour accéder aux KanbanSection sont les suivantes :
-- **(GET)** - /kanban/api/boards/{id}/sections : Permet de récupérer toutes les KanbanSection d'une KanbanBoard
-- **(DELETE)** - /kanban/api/boards/{id}/sections : Permet de supprimer toutes les KanbanSection d'une KanbanBoard
+- **(GET)** - /kanban/api/boards/{boardId}/sections : Permet de récupérer toutes les KanbanSection d'une KanbanBoard
+- **(DELETE)** - /kanban/api/boards/{boardId}/sections : Permet de supprimer toutes les KanbanSection d'une KanbanBoard
+- **(GET)** - /kanban/api/boards/{boardId}/sections/{sectionId} : Permet d'accéder à une KanbanSection en particulier dans un KanbanBoard en particulier
+- **(POST)** - /kanban/api/boards/{boardId}/sections/{sectionId} : Permet de créer une KanbanSection dans un KanbanBoard en particulier
+- **(PUT)** - /kanban/api/boards/{boardId}/sections/{sectionId} : Permet de mettre à jour une KanbanSection dans un KanbanBoard en particulier
+- **(DELETE)** - /kanban/api/boards/{boardId}/sections/{sectionId} : Permet de supprimer une KanbanSection dans un KanbanBoard en particulier
+
+### KanbanCard
+Les routes pour accéder aux KanbanCard sont les suivantes :
+- **(GET)** - /kanban/api/boards/{boardId}/sections/{sectionId}/cards : Permet de récupérer toutes les KanbanCard d'une KanbanSection d'un KanbanBoard
+- **(DELETE)** - /kanban/api/boards/{boardId}/sections/{sectionId}/cards : Permet de supprimer toutes les KanbanCard d'une KanbanSection d'un KanbanBoard
+- **(GET)** - /kanban/api/boards/{boardId}/sections/{sectionId}/{sectionId}/cards/{cardId} : Permet d'accéder à une KanbanCard en particulier dans une KanbanSection d'un KanbanBoard
+- **(POST)** - /kanban/api/boards/{boardId}/sections/{sectionId}/{sectionId}/cards/{cardId} : Permet de créer une KanbanCard dans une KanbanSection d'un KanbanBoard
+- **(PUT)** - /kanban/api/boards/{boardId}/sections/{sectionId}/{sectionId}/cards/{cardId} : Permet de mettre à jour une KanbanCard dans une KanbanSection d'un KanbanBoard
+- **(DELETE)** - /kanban/api/boards/{boardId}/sections/{sectionId}/{sectionId}/cards/{cardId} : Permet de supprimer une KanbanCard dans une KanbanSection d'un KanbanBoard
 
 
 ## Gestion des erreurs
@@ -51,7 +64,7 @@ Les DTOs sont générés automatiquement grâce au Swagger à la compilation, via l'u
 - Le projet est développé en [Java 11.0.13](https://www.oracle.com/fr/java/technologies/javase/jdk11-archive-downloads.html)
 - Créer la base de données "kanban_app" sur l'interface phpMyAdmin. Le script de création de la base de données se trouve dans le dossier **/src/main/ressources/database**. Sinon, dans le fichier de configuration de l'application **/src/main/ressources/config/application.yml**, passer la valeur de **spring.jpa.hibernate.ddl-auto** à **"create"**. Cette opération créera la base de données à chaque lancement de l'application, alors s'assurer de remettre sa valeur à **"none"** après la première création.
 - Compiler l'application : `mvn clean install` afin de générer les DTOs nécessaires au fonctionnement de l'application.
-- Démarrer l'application ?
+- Démarrer l'application :)
 
 ## Ressources
 Dans le dossier /src/main/ressources se trouvent un ensemble de ressources utiles pour pouvoir comprendre et tester le projet :
