@@ -15,7 +15,6 @@
     <name>kanban</name>
     <description>Kanban Application SIR course</description>
     <properties>
-        <maven.compiler.release>11</maven.compiler.release>
         <sonar.core.codeCoveragePlugin>jacoco</sonar.core.codeCoveragePlugin>
         <sonar.dynamicAnalysis>reuseReports</sonar.dynamicAnalysis>
         <sonar.jacoco.reportPath>${project.basedir}/../target/jacoco.exec</sonar.jacoco.reportPath>
