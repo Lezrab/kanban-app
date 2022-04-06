@@ -11,7 +11,7 @@
     <groupId>fr.istic.sir.kanban.aarzel</groupId>
     <artifactId>kanban</artifactId>
     <version>G01R00C00</version>
-    <packaging>jar</packaging>
+    <packaging>war</packaging>
     <name>kanban</name>
     <description>Kanban Application SIR course</description>
     <properties>
