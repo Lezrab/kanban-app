@@ -47,4 +47,6 @@ management:
 
 config:
   property: CeciEstLaValeurDeLaPropriete
-
+java:
+  runtime:
+    version: 11
